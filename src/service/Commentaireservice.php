@@ -24,7 +24,7 @@ class Commentaireservice
     {
         $commentaire->setIsPublished(false)
             ->setBlogpost($blogpost)
-            ->setPeinture($peinture)
+            //->setPeinture($peinture)
             ->setCreatedAt(new DateTime('now'));
         $this->manager->persist($commentaire);
         $this->manager->flush();
