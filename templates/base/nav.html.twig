@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+   <div class="container">
+   <a class="navbar-brand" href="{{ path('home') }}">
+        <img src="/img/logo.png" class="navbar-brand-img" alt="...">
+     </a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-labelledby="">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapsse navbar-collapse" id="navbarCollapse">
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-labelledby="">
+              <i class="fe fe-x"></i>
+           </button>
+           <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                 <a href="{{ path('realisations') }}" class="nav-link">Realisation</a>
+              </li>
+               <li class="nav-item dropdown">
+                 <a href="{{ path('actualites') }}" class="nav-link">Actualites</a>
+              </li>
+               <li class="nav-item dropdown">
+                 <a href="{{ path('portfolio') }}" class="nav-link dropdown-toggle" id="navbarAccount" data-bs-toggle="dropdown" aria->Portfolio
+                 </a>
+                 <ul class="dropdown-menu" aria-labelledby="navabarAccount">
+                     {% for categorie in categorieNavbar() %}
+                       <li class="dropdown-item dropend">
+                          <a href="{{ path('portfolio_categorie', {'slug': categorie.slug}) }}">{{ categorie.nom }}</a>
+                        </li>
+                     {% endfor %}
+                  </ul>
+              </li>
+              <li class="nav-item">
+              <a href="{{ path('apropos') }}" class="nav-link">A propos</a>
+              
+              </li>
+           
+           </ul>
+           <a href="{{ path('contact') }}" class="btn btn-primary lift ms-auto">Me contacter</a>
+     </div>
+   
+   </div>
+
+</nav>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %} Hello ActualitesController{% endblock %}
+{% block body %}
+<section class="pt-7 pt-md-10">
+   <div class="container">
+      <div class="row">
+      <div class="col-12">
+         <h2 class="mb-0">
+            Dernieres realisations
+         
+         </h2>
+         <p class="mb-5 text-muted">
+            These span the grid's entire width with several options.
+         </p>
+      
+      </div>
+      {% for peinture in peintures %}
+        <div class="col-12 col-md-6 d-flex">
+          <div class="card mb-6 shadow-light-lg lift lift-lg">
+          <a href="{{ path('realisationsdetails', {'slug': peinture.slug})}}" class="card-img-top">
+            <img src="{{ vich_uploader_asset(peinture,'imageFile') |imagine_filter('miniature')  }}" alt="..." class="card-img-top">
+          </a>
+          <a href="{{ path('realisationsdetails', {'slug': peinture.slug}) }}" class="card-body">
+          <h3>
+              {{ peinture.nom}}
+          </h3>
+          <p class="mb-0 text-muted">
+           {{ peinture.description|u.truncate(200,'...', false) }}
+          
+          </p>
+          
+          </a>
+           <a class="card-meta mt-auto" href="{{ path('realisationsdetails', {'slug': peinture.slug}) }}">
+             <hr class="card-meta-divider">
+               <p class="h6 text-uppercase text-muted mb- ms-auto">
+                 <time>Ajoutee le {{ peinture.createdAt|date('d/m/Y') }}</time>
+              </p>
+                              
+           </a>
+          </div>
+        
+        </div>
+         
+      {% endfor %}
+
+      
+      </div>
+   
+   
+   </div>
+   <div class="d-flex justify-content-center">
+   {% do peintures.setPageRange(2) %}
+   {{ knp_pagination_render(peintures, 'base/pagination.html.twig') }}
+   </div>
+</section>
+{% endblock %}

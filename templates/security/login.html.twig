@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+       {% block title  %}Welcome!
+       {% endblock %}
+    
+    </title>
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app')}}
+      {% endblock %}
+</head>
+<body>
+      <section>
+           <div class="container d-flex flex-column">
+                <div class="row align-items-center justify-content-center gx-0 min-vh-100">
+                    <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+                       
+                       <h1 class="mb-0 fw-bold">
+                         Ouvrir une session
+                       </h1>
+                       <p class="mb-6 text-muted">
+                         Administration du site internet
+                       </p>
+                       <form method="post" class="mb-6">
+                           {% if error %}
+                             
+                               <div class="alert alert-danger">{{error.messageKey|trans(error.messageData, 'session ouverte')}}</div>
+
+                           {% endif %}
+                           {% if app.user %}
+                               <div class="mb-3">
+                                    You are logged in as
+                                    {{app.user.username}},
+                                    <a href="{{ path('app_logout') }}">Logout</a>
+                               </div>
+                               {% endif %}
+                               <h1 class="h3 mb-3 font-weight-normal"></h1>
+                               <label  for="inputEmail">Email Address</label>
+                               <input type="email" value="{{last_username}}"class="form-control" id="inputEmail" placeholder="name@address.com" name="email" require="required">
+                               <label  for="inputEmail">Password</label>
+                               <input type="password" name="password" id="inputPassword" class="form-control"  require="required" placeholder="votre mot de passe">
+                               <input type="hidden" name="_csrf_token" value="{{csrf_token('authenticate')}}">
+                               <button class="btn w-100 btn-primary mt-4" type="submit">Ouvrir une session</button>
+                       </form>
+                      
+                    
+                    </div>
+                   <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block" data-aos="fade-left">
+
+                       <!-- Image -->
+                       <div class="h-100 w-cover bg-cover" style="background-image: url(/img/photo-1.jpg);"></div>
+
+                        <!-- Shape -->
+                       
+                
+         </div>
+
+        </div>
+        </div>
+      
+      </section>
+      {% block javascripts %}
+         {{ encore_entry_script_tags('app')}}
+       {% endblock %}
+    
+</body>
+</html>

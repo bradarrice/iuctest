@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Hello PortfolioController{% endblock %}
+
+{% block body %}
+    {% set img = categorie.peintures|last %}
+    <section data-jaralax data-speed=".8" class="pt-12 pt-md-14 pb-md-15 overlay overlay-black overlay-60 bg-cover jarallax" style="margin-top: -87px; background-image:();">
+        <div class="container">
+           <div class="row justify-content-center">
+              <div class="col-12 col-md-10 col-lg-7 text-center">
+                 <h1 class="display-2 fw-bold text-black">
+                   
+                      {{ categorie.nom}}
+                 </h1>
+                 <p class="lead text-white-75 mb-4">
+                  
+                    {{ categorie.description }}
+                 </p>
+              
+              </div>
+           
+           </div>
+        
+        </div>
+    
+    
+    </section>
+
+    <div class="position-relative">
+       <div class="shape shape-bottom shape-fluid-x svg-shim text-light">
+        <svg viewbox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="MO 48h2880v0h-720c1442.5 52 720 0 720 0H0v48z" fill="currenColor"/></svg> </div>
+   </div>
+
+   <section class="py-8 py-md-11 mt-n10 mt-md-n14">
+        <div class="container">
+            <div class="row" id="portfolio" data-isotope='{"layoutMode": "masonry"}'>
+
+            {% for peinture in peintures %}
+                <div class="col-col-md-4">
+                   <a href="#!" class="card shadow-light-lg mb-7" data-bigpicture='{"imgSrc": "{{ vich_uploader_asset(peinture,'imageFile') }}"}'>
+                      <div class="card-zoom">
+                        <img src="{{ vich_uploader_asset(peinture,'imageFile') }}" alt="..." class="card-img">
+                      
+                      </div>
+                   </a>
+                 
+                </div>
+                 {% endfor %}
+            </div>
+        
+        </div>
+   
+   
+   </section>
+   {% endblock %}

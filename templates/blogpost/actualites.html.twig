@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block title %} Hello ActualitesController{% endblock %}
+{% block body %}
+<section class="pt-7 pt-md-10">
+   <div class="container">
+      <div class="row">
+      <div class="col-12">
+         <h2 class="mb-0">
+            Dernieres realisations
+         
+         </h2>
+         <p class="mb-5 text-muted">
+            These span the grid's entire width with several options.
+         </p>
+      
+      </div>
+      {% for blogpost in blogposts %}
+        <div class="col-12 col-lg-4 d-flex">
+          <div class="card mb-6 shadow-light-lg lift lift-lg">
+         
+          <a href="{{ path('actualites_detail', {'slug': blogpost.slug}) }}" class="card-body my-auto">
+          <h3>
+              {{ blogpost.titre }}
+          </h3>
+          <p class="mb-0 text-muted">
+           {{ blogpost.contenu|u.truncate(150,'...', false) }}
+          
+          </p>
+          
+          </a>
+           <a class="card-meta" href="{{ path('actualites_detail', {'slug': blogpost.slug}) }}">
+             <hr class="card-meta-divider">
+               <p class="h6 text-uppercase text-muted mb- ms-auto">
+                 <time>Ajoutee le {{blogpost.createdAt|date('d/m/Y') }}</time>
+              </p>
+                              
+           </a>
+          </div>
+        
+        </div>
+         
+      {% endfor %}
+
+      
+      </div>
+   
+   
+   </div>
+   <div class="d-flex justify-content-center">
+   {% do blogposts.setPageRange(2) %}
+   {{ knp_pagination_render(blogposts, 'base/pagination.html.twig') }}
+   </div>
+</section>
+ {% endblock %}
